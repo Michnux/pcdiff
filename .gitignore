@@ -1,0 +1,7 @@
+*.las
+*.tif
+*.aux.xml
+*.pyc
+
+DockerRegistryCredentials.json
+config-connections.json
