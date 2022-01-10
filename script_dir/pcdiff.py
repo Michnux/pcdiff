@@ -5,7 +5,7 @@ from matplotlib import cm
 
 
 
-def pcvs3d(input_path, ref_path, work_dir):
+def pcdiff(input_path, ref_path, work_dir):
 
 	fi = laspy.read(input_path)
 	x = fi.X * fi.header.scales[0] + fi.header.offsets[0]
@@ -57,4 +57,4 @@ if __name__ == "__main__":
 	input_path = '../work_dir/input.las'
 	ref_path = '../work_dir/input.las'
 	work_dir = '../work_dir/'
-	pcvs3d(input_path, ref_path, work_dir)
+	pcdiff(input_path, ref_path, work_dir)

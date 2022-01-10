@@ -49,18 +49,10 @@ def main():
 	ref_path = inputs.get('ref_pc').get('components')[0]['path']
 	project_id = inputs.get('input_pc').get('project')
 	mission_id = inputs.get('input_pc').get('mission')
-	horizontal_srs_wkt = inputs.get('input_pc').get('horizontal_srs_wkt')
-	grid_size = parameters.get('grid_size') #str or None
-	if not grid_size:
-		grid_size = 0.2
-	else:
-		grid_size = float(grid_size) #to float
+	hsrs = inputs.get('input_pc').get('horizontal_srs_wkt')
+	vsrs = inputs.get('input_pc').get('vertical_srs_wkt')
 
-	logging.debug(file_path)
-	logging.debug(grid_size)
-	
-
-	pcvs3d(file_path, grid_size, horizontal_srs_wkt, WORKING_DIR)
+	pcdiff(input_path, ref_path, work_dir)
 
 	logging.debug('Generating outputs.json file...')
 
@@ -87,7 +79,7 @@ def main():
 		json.dump(output, f)
 
 	script_dir = str(SCRIPT_DIR)
-	upload_dataset(str(outpath), project_id, mission_id, script_dir)
+	upload_dataset(str(outpath), project_id, mission_id, script_dir, hsrs, vsrs)
 
 	logging.debug('End.')
 

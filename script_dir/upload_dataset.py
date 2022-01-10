@@ -2,17 +2,19 @@ import alteia
 
 
 
-def upload_dataset(file_path, project_id, mission_id, script_dir):
+def upload_dataset(file_path, project_id, mission_id, script_dir, hsrs, vsrs):
 
 	sdk = alteia.SDK(config_path=script_dir+'/config-connections.json')
 
-	new_dataset = sdk.datasets.create_raster_dataset(	name='output_dsm',
-														project=project_id,
-														mission=mission_id,
-														categories=['dsm'])
+	new_dataset = sdk.datasets.create_pcl_dataset(	name='PC diff',
+													project=project_id,
+													mission=mission_id,
+													categories=[],
+													horizontal_srs_wkt = hsrs,
+													vertical_srs_wkt = vsrs)
 
 	sdk.datasets.upload_file(dataset=new_dataset.id,
-							 component='raster',
+							 component='pcl',
 							 file_path=file_path)
 
 
