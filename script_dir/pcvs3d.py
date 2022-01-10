@@ -37,6 +37,7 @@ def pcvs3d(input_path, ref_path, work_dir):
 	colors = [cmap(dist)[0:3] for dist in dists0]
 	colors = np.array(colors)
 
+	# local visualization (for debug purpose)
 	# pcd_diff = o3d.geometry.PointCloud()
 	# pcd_diff.points = o3d.utility.Vector3dVector(xyz)
 	# pcd_diff.colors = o3d.utility.Vector3dVector(colors)
@@ -47,17 +48,6 @@ def pcvs3d(input_path, ref_path, work_dir):
 	fi.blue = colors[:,2]
 	fi.intensity = dists
 	fi.write(work_dir+'output.las')
-
-	# outFile1 = laspy.file.File(work_dir+'output.las', mode = "w", header = fi.header)
-	# outFile1.X = fi.X
-	# outFile1.Y = fi.Y
-	# outFile1.Z = fi.Z
-	# outFile1.red = colors[:,0]
-	# outFile1.green = colors[:,1]
-	# outFile1.blue = colors[:,2]
-	# outFile1.intensity = dists
-	# outFile1.close()
-
 
 
 

@@ -38,7 +38,7 @@ sdk.analytics.create(name="alteiademo/pcvs3d",
 	},
 	{
 		"name": "reference",
-		"display_name": "reference_pc",
+		"display_name": "ref_pc",
 		"description": ".las file",
 		"scheme": {
 			"type": "string", "pattern": "^[0-9a-f]{24}$"

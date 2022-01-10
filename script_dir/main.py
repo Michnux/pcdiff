@@ -45,7 +45,8 @@ def main():
 	logging.debug(parameters)
 
 	# file_path = WORKING_DIR / inputs.get('input_pc').get('components')[0]['filename']
-	file_path = inputs.get('input_pc').get('components')[0]['path']
+	input_path = inputs.get('input_pc').get('components')[0]['path']
+	ref_path = inputs.get('ref_pc').get('components')[0]['path']
 	project_id = inputs.get('input_pc').get('project')
 	mission_id = inputs.get('input_pc').get('mission')
 	horizontal_srs_wkt = inputs.get('input_pc').get('horizontal_srs_wkt')
@@ -59,24 +60,21 @@ def main():
 	logging.debug(grid_size)
 	
 
-	# pc2dsm(file_path, grid_size, horizontal_srs_wkt, WORKING_DIR)
-	# scatter_geotiff('speedmap_dsmlike.tif', v2['lon'].tolist(), v2['lat'].tolist(), val.tolist())
-	scatter_geotiff(file_path, grid_size, horizontal_srs_wkt, WORKING_DIR,
-					v2['lon'].tolist(), v2['lat'].tolist(), val.tolist())
+	pcvs3d(file_path, grid_size, horizontal_srs_wkt, WORKING_DIR)
 
 	logging.debug('Generating outputs.json file...')
 
-	outpath = WORKING_DIR / 'output.tif'
+	outpath = WORKING_DIR / 'output.las'
 	output = {
 		"outputs": {
-			"output_dsm": {  # Must match the name of deliverable in rust-detector.yaml
-				"type": "raster",
-				"format": "tif",
+			"output": {  # Must match the name of deliverable in rust-detector.yaml
+				"type": "pcl",
+				"format": "las",
 				# "categories": ["DSM"],
-				"name": "output_dsm",
+				"name": "output",
 				"components": [
 					{
-						"name": "output_dsm",
+						"name": "output",
 						# "filename": "output.tif",
 						"path": str(outpath)
 					}
