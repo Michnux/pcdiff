@@ -1,0 +1,1 @@
+{"outputs": {"output": {"type": "pcl", "format": "las", "name": "output", "components": [{"name": "output", "path": "/home/work_dir/output.las"}]}}, "version": "v1.0"}

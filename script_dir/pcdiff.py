@@ -5,7 +5,7 @@ from matplotlib import cm
 
 
 
-def pcdiff(input_path, ref_path, work_dir):
+def pcdiff(input_path, ref_path, work_dir, max_dist):
 
 	fi = laspy.read(input_path)
 	x = fi.X * fi.header.scales[0] + fi.header.offsets[0]
@@ -25,17 +25,17 @@ def pcdiff(input_path, ref_path, work_dir):
 	pcd_ref = o3d.geometry.PointCloud()
 	pcd_ref.points = o3d.utility.Vector3dVector(xyz_ref)
 
-	dists = pcd_ref.compute_point_cloud_distance(pcd)
+	dists = pcd.compute_point_cloud_distance(pcd_ref)
 	dists = np.array(dists)
-	maxd = max(dists)
-	if maxd>0:
-		dists0 = dists/max(dists)
-	else:
-		dists0 = dists
+	dists = [min(dist, max_dist) for dist in dists]
 
+	# dists = [0.5 for dist in dists]
+
+
+	# cmap = cm.get_cmap('bwr')
 	cmap = cm.get_cmap('jet')
-	colors = [cmap(dist)[0:3] for dist in dists0]
-	colors = np.array(colors)
+	colors = [cmap(dist/max_dist)[0:3] for dist in dists]
+	colors = np.array(colors)*(2**16-1)
 
 	# local visualization (for debug purpose)
 	# pcd_diff = o3d.geometry.PointCloud()
@@ -53,8 +53,7 @@ def pcdiff(input_path, ref_path, work_dir):
 
 if __name__ == "__main__":
 
-
-	input_path = '../work_dir/input.las'
-	ref_path = '../work_dir/input.las'
+	input_path = '../work_dir/sampled point cloud.las'
+	ref_path = '../work_dir/Point Cloud.las'
 	work_dir = '../work_dir/'
-	pcdiff(input_path, ref_path, work_dir)
+	pcdiff(input_path, ref_path, work_dir, 1.0)

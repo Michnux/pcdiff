@@ -8,15 +8,10 @@
 
 
 
-docker build -t pcvs3d .
-docker run -it -v work_dir:/home/work_dir --env DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name pcvs3d_1 pcvs3d
+docker build -t pcdiff .
+docker run -it -v work_dir:/home/work_dir --env DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name pcdiff_1 pcdiff
 
 
-docker run -it -v C:\Users\michael.delagarde\Documents\DEV\CustomAnalytics\pcvs3d\work_dir:/home/work_dir -e DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name pcvs3d_1 pcvs3d
-docker run -it -v C:\Users\michael.delagarde\Documents\DEV\CustomAnalytics\pcvs3d\python:/home/python -e DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name pcvs3d_1 pcvs3d
-docker run -it -v C:\Users\michael.delagarde\Documents\DEV\CustomAnalytics\pcvs3d\python:/home/python -e DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name ccd_1 ccd
+docker run -it -v C:\Users\michael.delagarde\Documents\DEV\CustomAnalytics\pcdiff\work_dir:/home/work_dir -e DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name  pcdiff_1 pcdiff
+docker run -it -v C:\Users\michael.delagarde\Documents\DEV\CustomAnalytics\pcdiff\python:/home/python -e DELAIRSTACK_PROCESS_WORKDIR='/home/work_dir/' --name  pcdiff_1 pcdiff
 
-
-xvfb-run CloudCompare -SILENT \
--O ./untitled1.obj \
--SAMPLE_MESH POINTS 500000

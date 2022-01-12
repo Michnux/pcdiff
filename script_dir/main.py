@@ -4,10 +4,9 @@ import logging
 import os
 from pathlib import Path
 import sys
-from DrawRaster import scatter_geotiff
-
 import time
 
+from pcdiff import pcdiff
 from upload_dataset import upload_dataset
 
 
@@ -52,7 +51,15 @@ def main():
 	hsrs = inputs.get('input_pc').get('horizontal_srs_wkt')
 	vsrs = inputs.get('input_pc').get('vertical_srs_wkt')
 
-	pcdiff(input_path, ref_path, work_dir)
+	max_dist = parameters.get('max_dist') #str or None
+	if not max_dist:
+		max_dist = 1.0
+	else:
+		max_dist = float(max_dist) #to float
+
+	work_dir = str(WORKING_DIR)+'/'
+
+	pcdiff(input_path, ref_path, work_dir, max_dist)
 
 	logging.debug('Generating outputs.json file...')
 

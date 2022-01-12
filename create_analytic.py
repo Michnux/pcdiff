@@ -5,16 +5,16 @@ import alteia
 sdk = alteia.SDK(config_path='./config-connections.json')
 
 
-analytic = sdk.analytics.search(name="alteiademo/pcvs3d")
+analytic = sdk.analytics.search(name="alteiademo/pcdiff")
 if len(analytic)>0:
 	analytic=analytic[0]
 	sdk.analytics.delete(analytic=analytic.id)
 
-sdk.analytics.create(name="alteiademo/pcvs3d",
+sdk.analytics.create(name="alteiademo/pcdiff",
 	version="1.0.0",
-	display_name="pcvs3d",
-	description="Generates a difference Point Cloud, from a Point Cloud to a Reference (that can be a Point Cloud or another 3d file",
-	docker_image="registry-1.docker.io/michaeldelagarde/pcvs3d:latest",
+	display_name="pcdiff",
+	description="Generates a difference Point Cloud, from a Point Cloud to a Reference",
+	docker_image="registry-1.docker.io/michaeldelagarde/pcdiff:latest",
 	company="5c1a2567b3c575583e8a650d",
 	instance_type='small',
 	volume_size=20,
@@ -54,20 +54,12 @@ sdk.analytics.create(name="alteiademo/pcvs3d",
 		},
 		"required": True
 	},],
-	parameters=[{
-		"name": "min",
-		"display_name": "min",
-		"description": "min distance to be displayed",
-		"required": True,
-		"scheme": {
-			"type": "string"#, "pattern": "^[0-9]$"
-		}
-	 },
+	parameters=[
 	 {
-		"name": "max",
-		"display_name": "max",
-		"description": "max distance to be displayed",
-		"required": True,
+		"name": "max_dist",
+		"display_name": "max distance",
+		"description": "max distance between point clouds to be displayed (default 1m)",
+		"required": False,
 		"scheme": {
 			"type": "string"#, "pattern": "^[0-9]$"
 		}
