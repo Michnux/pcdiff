@@ -69,24 +69,22 @@ def main():
 			"output": {  # Must match the name of deliverable in rust-detector.yaml
 				"type": "pcl",
 				"format": "las",
-				# "categories": ["DSM"],
-				"name": "output",
+				"name": "output_pcdiff",
 				"components": [
 					{
-						"name": "output",
-						# "filename": "output.tif",
+						"name": "pcl",
 						"path": str(outpath)
 					}
 				]
 			}
 		},
-		"version": "v1.0"
+		"version": "0.1"
 	}
 	with open(WORKING_DIR / 'outputs.json', 'w+') as f:
 		json.dump(output, f)
 
-	script_dir = str(SCRIPT_DIR)
-	upload_dataset(str(outpath), project_id, mission_id, script_dir, hsrs, vsrs)
+	# script_dir = str(SCRIPT_DIR)
+	# upload_dataset(str(outpath), project_id, mission_id, script_dir, hsrs, vsrs)
 
 	logging.debug('End.')
 

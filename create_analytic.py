@@ -20,7 +20,7 @@ sdk.analytics.create(name="alteiademo/pcdiff",
 	volume_size=20,
 	inputs=[{
 		"name": "input_pc",
-		"display_name": "input_pc",
+		"display_name": "input point cloud",
 		"description": ".las file",
 		"scheme": {
 			"type": "string", "pattern": "^[0-9a-f]{24}$"
@@ -37,8 +37,8 @@ sdk.analytics.create(name="alteiademo/pcdiff",
 		"required": True
 	},
 	{
-		"name": "reference",
-		"display_name": "ref_pc",
+		"name": "ref_pc",
+		"display_name": "reference point cloud",
 		"description": ".las file",
 		"scheme": {
 			"type": "string", "pattern": "^[0-9a-f]{24}$"
@@ -65,24 +65,24 @@ sdk.analytics.create(name="alteiademo/pcdiff",
 		}
 	 }],
 	deliverables=[
-	# {
-	# 	"name": "outputtif",
-	# 	"display_name": "outputtif",
-	# 	"description": "outputtif",
-	# 	"scheme": {
-	# 		"type": "string", "pattern": "^[0-9a-f]{24}$"
-	# 	},
-	# 	"source": {
-	# 		"service": "data-manager",
-	# 		"resource": "dataset",
-	# 		"scheme": {
-	# 			"type": "object",
-	# 			"properties": {"type": {"const": "raster"}},
-	# 			"required": ["type"]
-	# 		},
-	# 	},
-	# 	"required": False
-	# }
+	{
+		"name": "output",
+		"display_name": "output_pcdiff",
+		"description": "output_pcdiff",
+		"scheme": {
+			"type": "string", "pattern": "^[0-9a-f]{24}$"
+		},
+		"source": {
+			"service": "data-manager",
+			"resource": "dataset",
+			"scheme": {
+				"type": "object",
+				"properties": {"type": {"const": "pcl"}},
+				"required": ["type"]
+			},
+		},
+		"required": True
+	}
 	],
 	tags=["croquette"],
 	groups=["UTILS"])
