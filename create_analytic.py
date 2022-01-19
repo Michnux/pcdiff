@@ -12,7 +12,7 @@ if len(analytic)>0:
 
 sdk.analytics.create(name="alteiademo/pcdiff",
 	version="1.0.0",
-	display_name="pcdiff",
+	display_name="Point Clouds Difference",
 	description="Generates a difference Point Cloud, from a Point Cloud to a Reference",
 	docker_image="registry-1.docker.io/michaeldelagarde/pcdiff:latest",
 	company="5c1a2567b3c575583e8a650d",
