@@ -33,19 +33,3 @@ with the follwing structure:
 }
 
 Credentials to access the docker registry used still have to be created from the CLI
-
-
-## Fix-me:
-
-The scripts generates a raster (output.las) as a final result.
-A dataset is created and the output.las component uplaoded from the docker using the SDK (cf. uplaod_dataset.py file)
-This requires credentials to be added to the script_dir in a file named : config-connections.json
-with the follwing structure:
-
-{
-	"user":"jjj@fff.com",
-	"password":"pass",
-	"url":"https://app.alteia.com"
-}
-
-this is a quick-fix as the transfert of the generated results (as described in the outputs.json file) doesn't seem to work properly
